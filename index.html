@@ -23,10 +23,17 @@
     </style>
 
     <script>
-        // Forces the PWA window to instantly load the Apps Script content
-        window.location.replace("https://script.google.com/macros/s/AKfycbz3EcoshhmmuNYuBz5OkjjPUuJZTkWZy4Twhj9osTr71r_ZXr0uQ6i2rPDnnhCaO7Xg/exec"); 
+        // Store the final destination URL
+        const finalUrl = "https://script.google.com/macros/s/AKfycbz3EcoshhmmuNYuBz5OkjjPUuJZTkWZy4Twhj9osTr71r_ZXr0uQ6i2rPDnnhCaO7Xg/exec"; 
 
-        // Register the service worker
+        // Delay the redirect by 500 milliseconds (0.5 seconds)
+        // This gives the browser time to read the manifest.json
+        setTimeout(function() {
+            window.location.replace(finalUrl);
+        }, 500);
+
+
+        // Register the service worker (keep this part for PWA compliance)
         if ('serviceWorker' in navigator) {
             window.addEventListener('load', () => {
                 navigator.serviceWorker.register('/sw.js').then(registration => {
