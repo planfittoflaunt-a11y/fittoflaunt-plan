@@ -1,23 +1,44 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Fit to Flaunt — Opening Plan</title>
-  <style>
-    body { font-family: Arial, Helvetica, sans-serif; text-align: center; padding: 60px; background: #fff; color: #333; }
-    .logo { width: 100px; border-radius: 14px; margin-bottom: 12px; }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>FITAXIS Portal - Loading</title>
+
+    <link rel="manifest" href="/manifest.json">
+    <meta name="theme-color" content="#1E1E1E">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-title" content="FITAXIS">
+    
+    <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png"> 
+    
+    <style>
+      body { 
+        font-family: sans-serif; 
+        text-align: center; 
+        padding-top: 50px; 
+        background-color: #f4f4f4; /* Light background while loading */
+        color: #1E1E1E;
+      }
+    </style>
+
+    <script>
+        // Forces the PWA window to instantly load the Apps Script content
+        window.location.replace("https://script.google.com/macros/s/AKfycbz3EcoshhmmuNYuBz5OkjjPUuJZTkWZy4Twhj9osTr71r_ZXr0uQ6i2rPDnnhCaO7Xg/exec"); 
+
+        // Register the service worker
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/sw.js').then(registration => {
+                    console.log('SW registered:', registration.scope);
+                }).catch(error => {
+                    console.error('SW registration failed:', error);
+                });
+            });
+        }
+    </script>
 </head>
 <body>
-  <img class="logo" src="https://i.ibb.co/20zdssxk/barbell-hip-thrust.jpg" alt="Fit to Flaunt" />
-  <h2>Opening your Fit to Flaunt Plan...</h2>
-  <p>If not redirected automatically, <a id="manual" href="#">tap here</a>.</p>
-
-  <script>
-    const target = "https://script.google.com/macros/s/AKfycbz3EcoshhmmuNYuBz5OkjjPUuJZTkWZy4Twhj9osTr71r_ZXr0uQ6i2rPDnnhCaO7Xg/exec"; // 👈 paste your Apps Script URL here
-    document.getElementById("manual").href = target;
-    setTimeout(() => { window.location.href = target; }, 800);
-  </script>
+    <div style="font-size: 1.2em; font-weight: bold;">Launching FITAXIS App...</div>
 </body>
 </html>
