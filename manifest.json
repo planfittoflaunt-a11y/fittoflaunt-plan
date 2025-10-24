@@ -4,7 +4,7 @@
   "description": "Your personalized workout portal.",
   "start_url": "./",
   "scope": "./",
-  "display": "standalone",
+  "display": "minimal-ui",
   "theme_color": "#1E1E1E",
   "background_color": "#1E1E1E",
   "icons": [
