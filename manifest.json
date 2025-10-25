@@ -2,23 +2,21 @@
   "name": "FitAxis Portal",
   "short_name": "FITAXIS",
   "description": "Your personalized workout portal.",
-  "start_url": "/",
-  "scope": "/",
+  "start_url": "./",
+  "scope": "./",
   "display": "standalone",
   "theme_color": "#1E1E1E",
   "background_color": "#1E1E1E",
   "icons": [
     {
-      "src": "https://plan.fittoflaunt.com/icons/android-chrome-192x192.png",
+      "src": "/icons/android-chrome-192x192.png",
       "sizes": "192x192",
-      "type": "image/png",
-      "purpose": "any maskable"
+      "type": "image/png"
     },
     {
-      "src": "https://plan.fittoflaunt.com/icons/android-chrome-512x512.png",
+      "src": "/icons/android-chrome-512x512.png",
       "sizes": "512x512",
-      "type": "image/png",
-      "purpose": "any maskable"
+      "type": "image/png"
     }
   ]
 }
