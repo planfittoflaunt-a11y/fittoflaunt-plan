@@ -3,7 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <title>FITAXIS</title> <link rel="manifest" href="/manifest.json">
+    <title>FITAXIS Portal</title> 
+
+    <link rel="manifest" href="/manifest.json">
     <meta name="theme-color" content="#1E1E1E">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="mobile-web-app-capable" content="yes">
@@ -15,7 +17,7 @@
         font-family: sans-serif; 
         text-align: center; 
         padding-top: 50px; 
-        background-color: #1E1E1E; /* Match Manifest Background */
+        background-color: #1E1E1E; /* Matches Manifest Background */
         color: #f4f4f4; 
         height: 100vh;
         margin: 0;
@@ -35,23 +37,20 @@
     </style>
 
     <script>
-        // 1. CRITICAL: Force Service Worker registration immediately (runs before page loads)
         if ('serviceWorker' in navigator) {
-            // Register immediately without waiting for 'load' event
+            // Register immediately without waiting for any page event
             navigator.serviceWorker.register('/sw.js').catch(function(error) {
                 console.error('SW registration failed:', error);
             });
         }
-        
-        // NO REDIRECT SCRIPT HERE. The user must click the button.
     </script>
 </head>
 <body>
     <div style="font-size: 1.5em; font-weight: bold;">Welcome to FITAXIS</div>
-    <p>Please install the app to get the full-screen experience.</p>
+    <p>Please use your browser's menu to "Install App" or "Add to Home Screen" now.</p>
     
     <a href="https://script.google.com/macros/s/AKfycbz3EcoshhmmuNYuBz5OkjjPUuJZTkWZy4Twhj9osTr71r_ZXr0uQ6i2rPDnnhCaO7Xg/exec" 
-       class="launch-button" 
+       class="launch-button"
        target="_blank">
        Launch App
     </a>
