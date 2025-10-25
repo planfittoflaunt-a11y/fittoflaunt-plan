@@ -1,58 +1,63 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <title>FITAXIS Portal</title> 
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover">
+  <title>FITAXIS Portal</title>
 
-    <link rel="manifest" href="/manifest.json">
-    <meta name="theme-color" content="#1E1E1E">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-title" content="FITAXIS">
-    <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png"> 
-    
-    <style>
-      body { 
-        font-family: sans-serif; 
-        text-align: center; 
-        padding-top: 50px; 
-        background-color: #1E1E1E; /* Matches Manifest Background */
-        color: #f4f4f4; 
-        height: 100vh;
-        margin: 0;
-      }
-      .launch-button {
-          padding: 15px 30px;
-          background-color: #16a34a; /* Green Theme Color */
-          color: white;
-          border: none;
-          border-radius: 8px;
-          font-size: 1.1em;
-          cursor: pointer;
-          margin-top: 30px;
-          text-decoration: none;
-          display: inline-block;
-      }
-    </style>
+  <!-- PWA links -->
+  <link rel="manifest" href="/manifest.json">
+  <meta name="theme-color" content="#1E1E1E">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="FITAXIS">
+  <link rel="apple-touch-icon" href="https://plan.fittoflaunt.com/icons/android-chrome-192x192.png">
+  <link rel="icon" href="https://plan.fittoflaunt.com/icons/android-chrome-192x192.png" sizes="192x192" type="image/png">
 
-    <script>
-        if ('serviceWorker' in navigator) {
-            // Register immediately without waiting for any page event
-            navigator.serviceWorker.register('/sw.js').catch(function(error) {
-                console.error('SW registration failed:', error);
-            });
-        }
-    </script>
+  <style>
+    body {
+      font-family: system-ui, sans-serif;
+      margin: 0;
+      background:#1E1E1E;
+      color:#f4f4f4;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      justify-content:center;
+      height:100vh;
+      overflow:hidden;
+    }
+    h1 { font-size:1.5rem; margin:0.5em 0; }
+    iframe {
+      width:100%;
+      height:90vh;
+      border:0;
+      border-radius:8px;
+      background:#fff;
+    }
+  </style>
+
+  <script>
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('/sw.js', { scope: '/' })
+      .then(reg => console.log('SW registered', reg.scope))
+      .catch(err => console.warn('SW failed', err));
+  }
+  </script>
 </head>
 <body>
-    <div style="font-size: 1.5em; font-weight: bold;">Welcome to FITAXIS</div>
-    <p>Please use your browser's menu to "Install App" or "Add to Home Screen" now.</p>
-    
-    <a href="https://script.google.com/macros/s/AKfycbz3EcoshhmmuNYuBz5OkjjPUuJZTkWZy4Twhj9osTr71r_ZXr0uQ6i2rPDnnhCaO7Xg/exec" 
-       class="launch-button"
-       target="_blank">
-       Launch App
-    </a>
+  <h1>Launching FitAxis App...</h1>
+  <iframe id="appFrame"
+    allow="fullscreen;geolocation;microphone;camera;clipboard-read;clipboard-write"
+    sandbox="allow-scripts allow-forms allow-same-origin allow-popups"
+    title="FitAxis App"></iframe>
+
+  <script>
+    // delay 500 ms so manifest loads before iframe
+    setTimeout(() => {
+      document.getElementById('appFrame').src =
+        'https://script.google.com/macros/s/AKfycbz3EcoshhmmuNYuBz5OkjjPUuJZTkWZy4Twhj9osTr71r_ZXr0uQ6i2rPDnnhCaO7Xg/exec';
+    }, 500);
+  </script>
 </body>
 </html>
