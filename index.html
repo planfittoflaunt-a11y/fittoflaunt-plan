@@ -3,13 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <title>FITAXIS Portal - Loading</title>
-
-    <link rel="manifest" href="/manifest.json">
+    <title>FITAXIS</title> <link rel="manifest" href="/manifest.json">
     <meta name="theme-color" content="#1E1E1E">
     <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-title" content="FITAXIS">
-    
     <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png"> 
     
     <style>
@@ -17,35 +15,45 @@
         font-family: sans-serif; 
         text-align: center; 
         padding-top: 50px; 
-        background-color: #f4f4f4; /* Light background while loading */
-        color: #1E1E1E;
+        background-color: #1E1E1E; /* Match Manifest Background */
+        color: #f4f4f4; 
+        height: 100vh;
+        margin: 0;
+      }
+      .launch-button {
+          padding: 15px 30px;
+          background-color: #16a34a; /* Green Theme Color */
+          color: white;
+          border: none;
+          border-radius: 8px;
+          font-size: 1.1em;
+          cursor: pointer;
+          margin-top: 30px;
+          text-decoration: none;
+          display: inline-block;
       }
     </style>
 
     <script>
-        // Store the final destination URL
-        const finalUrl = "https://script.google.com/macros/s/AKfycbz3EcoshhmmuNYuBz5OkjjPUuJZTkWZy4Twhj9osTr71r_ZXr0uQ6i2rPDnnhCaO7Xg/exec"; 
-
-        // Delay the redirect by 500 milliseconds (0.5 seconds)
-        // This gives the browser time to read the manifest.json
-        setTimeout(function() {
-            window.location.replace(finalUrl);
-        }, 500);
-
-
-        // Register the service worker (keep this part for PWA compliance)
+        // 1. CRITICAL: Force Service Worker registration immediately (runs before page loads)
         if ('serviceWorker' in navigator) {
-            window.addEventListener('load', () => {
-                navigator.serviceWorker.register('/sw.js').then(registration => {
-                    console.log('SW registered:', registration.scope);
-                }).catch(error => {
-                    console.error('SW registration failed:', error);
-                });
+            // Register immediately without waiting for 'load' event
+            navigator.serviceWorker.register('/sw.js').catch(function(error) {
+                console.error('SW registration failed:', error);
             });
         }
+        
+        // NO REDIRECT SCRIPT HERE. The user must click the button.
     </script>
 </head>
 <body>
-    <div style="font-size: 1.2em; font-weight: bold;">Launching FITAXIS App...</div>
+    <div style="font-size: 1.5em; font-weight: bold;">Welcome to FITAXIS</div>
+    <p>Please install the app to get the full-screen experience.</p>
+    
+    <a href="https://script.google.com/macros/s/AKfycbz3EcoshhmmuNYuBz5OkjjPUuJZTkWZy4Twhj9osTr71r_ZXr0uQ6i2rPDnnhCaO7Xg/exec" 
+       class="launch-button" 
+       target="_blank">
+       Launch App
+    </a>
 </body>
 </html>
